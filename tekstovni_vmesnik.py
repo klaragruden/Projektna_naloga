@@ -2,22 +2,31 @@ import model
 
 
 
-def izpis_poraza(igra):
-    return "IZGUBIL SI, več sreče prihodnjič!"
+ 
 
 def izpis_zmage(igra):
     return "ZMAGAL SI!"
 
-def izpis_remija(igra):
-    return "NEODLOČENO, poskusi še enkrat!"
+
+
+
 
 def izpis_igre(igra):
     presledek = "-----------------------------------"
-    igra.pokazi()
+    print('SPOMIN')
+    igra.pokazi2()
     print(presledek)
 
-def zahtevaj_vnos():
-    return input("Izberi:")
+def zahtevaj_vnos(): 
+    return input('Izberi polji')
+    
+   
+     
+#def zahtevaj_tezavnost():
+#    return input('1-lahko \n2-srednje \n3-tezko')
+     
+     
+
 
 def pozeni_vmesnik():
     # nova igra
@@ -25,6 +34,8 @@ def pozeni_vmesnik():
 
     while True:
         #pokazemo stanje
+         
+
         izpis_igre(trenutna_igra)
 
         izbira = zahtevaj_vnos()
