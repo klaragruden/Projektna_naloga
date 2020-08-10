@@ -14,7 +14,7 @@ def izpis_zmage(igra):
 def izpis_igre(igra):
     presledek = "-----------------------------------"
     print('SPOMIN')
-    igra.pokazi2()
+    igra.pokazi()
     print(presledek)
 
 def zahtevaj_vnos(): 

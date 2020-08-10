@@ -1,4 +1,6 @@
 import random
+ 
+
 
 VRSTICE = 4
 STOLPCI1 = 4
@@ -8,85 +10,103 @@ ZACETEK = 'S'
 
 ZMAGA ='W'
 
-TEZAVNOST_LAHKA = 2
-TEZAVNOST_TEZKA = 3
+TEZAVNOST_LAHKO = 1
+TEZAVNOST_SREDNJE = 2
+TEZAVNOST_TEZKO = 3
 
 SEZNAM_KART1 = ['K', 'D', 'B', '10', '9', '8', '7', 'A']
 SEZNAM_KART2 = ['K', 'D', 'B', '10', '9', '8', '7', 'A', '6', '5', '4', '3']
 
 
+
 # Definirajmo logicni model igre
 class Igra: 
 
-    def __init__(self, plosca, skrita):
+    def __init__(self, plosca, skrita, tezavnost):
         self.plosca = plosca
         self.skrita = skrita
-        
+        self.tezavnost = tezavnost
    
 
-    def pokazi1(self):
+    def pokazi(self):
         # pokaze nas trenutni rezultat
-        niz = ""
-        for i in range(0, VRSTICE):
-            for j in range(0, STOLPCI1):
-                niz = niz + self.skrita[i][j] + " "
-            if i != VRSTICE - 1:
-                niz = niz + "\n"
-        print(niz)
+        if self.tezavnost == TEZAVNOST_LAHKO:
+            niz = ""
+            for i in range(0, VRSTICE):
+                for j in range(0, STOLPCI1):
+                    niz = niz + self.skrita[i][j] + " "
+                if i != VRSTICE - 1:
+                    niz = niz + "\n"
+            print(niz)
+        elif self.tezavnost == TEZAVNOST_SREDNJE:
+            niz = ""
+            for i in range(0, VRSTICE):
+                for j in range(0, STOLPCI2):
+                    niz = niz + self.skrita[i][j] + " "
+                if i != VRSTICE - 1:
+                    niz = niz + "\n"
+            print(niz)
+        elif self.tezavnost == TEZAVNOST_TEZKO:
+            niz = ""
+            for i in range(0, VRSTICE):
+                for j in range(0, STOLPCI2):
+                    niz = niz + self.skrita[i][j] + " "
+                if i != VRSTICE - 1:
+                    niz = niz + "\n"
+            print(niz)
+        else:
+            print('vnesite veljavno tezavnost (1, 2 ali 3) ')
 
-    def pokazi2(self):
-        # pokaze nas trenutni rezultat
-        niz = ""
-        for i in range(0, VRSTICE):
-            for j in range(0, STOLPCI2):
-                niz = niz + self.skrita[i][j] + " "
-            if i != VRSTICE - 1:
-                niz = niz + "\n"
-        print(niz)
+   
 
-
+    def ugibaj(self, izbira):
+        seznam = []
+        if self.tezavnost == TEZAVNOST_TEZKO:
+            for i in izbira:
+                seznam.append(int(i))
+            par_1 = [] + seznam[:2]
+            ugib1 = self.plosca[par_1[0]][par_1[1]]
+            par_2 = [] + seznam[2:4]
+            ugib2 = self.plosca[par_2[0]][par_2[1]]
+            par_3 = [] + seznam[4:]
+            ugib3 = self.plosca[par_3[0]][par_3[1]]
+            if par_1 == par_2 == par_3 or par_3 == par_2 or par_3 == par_1 or par_1 == par_2:
+                return self.plosca
+            if ugib1 == ugib2 == ugib3:
+                self.skrita[par_1[0]][par_1[1]] = ugib1
+                self.skrita[par_2[0]][par_2[1]] = ugib2
+                self.skrita[par_3[0]][par_2[1]] = ugib3
+            return self.skrita    
+        elif self.tezavnost == TEZAVNOST_SREDNJE:
+            for i in izbira:
+                seznam.append(int(i))
+            par_1 = [] + seznam[:2]
+            ugib1 = self.plosca[par_1[0]][par_1[1]]
+            par_2 = [] + seznam[2:]
+            ugib2 = self.plosca[par_2[0]][par_2[1]]
+            if par_1 == par_2:
+                return self.plosca
+            if ugib1 == ugib2:
+                self.skrita[par_1[0]][par_1[1]] = ugib1
+                self.skrita[par_2[0]][par_2[1]] = ugib2
+            return self.skrita  
+        elif self.tezavnost == TEZAVNOST_LAHKO:
+            for i in izbira:
+                seznam.append(int(i))
+            par_1 = [] + seznam[:2]
+            ugib1 = self.plosca[par_1[0]][par_1[1]]
+            par_2 = [] + seznam[2:]
+            ugib2 = self.plosca[par_2[0]][par_2[1]]
+            if par_1 == par_2:
+                return self.plosca
+            if ugib1 == ugib2:
+                self.skrita[par_1[0]][par_1[1]] = ugib1
+                self.skrita[par_2[0]][par_2[1]] = ugib2
+            return self.skrita
+        else:
+            print('vneseni veljavno tezavnost (1, 2 ali 2)')
     
-    def ugibaj(self, izbira): 
-        seznam = []
-        for i in izbira:
-            seznam.append(int(i))
-         
-        par_1 = [] + seznam[:2]
-        ugib1 = self.plosca[par_1[0]][par_1[1]]
-        par_2 = [] + seznam[2:]
-        ugib2 = self.plosca[par_2[0]][par_2[1]]
-        if par_1 == par_2:
-            return self.plosca
-        if ugib1 == ugib2:
-            self.skrita[par_1[0]][par_1[1]] = ugib1
-            self.skrita[par_2[0]][par_2[1]] = ugib2
-        return self.skrita
-
-
-    def ugibaj_tezko(self, izbira): 
-        seznam = []
-        for i in izbira:
-            seznam.append(int(i))
-         
-        par_1 = [] + seznam[:2]
-        ugib1 = self.plosca[par_1[0]][par_1[1]]
-        par_2 = [] + seznam[2:4]
-        ugib2 = self.plosca[par_2[0]][par_2[1]]
-        par_3 = [] + seznam[4:]
-        ugib3 = self.plosca[par_3[0]][par_3[1]]
-        if par_1 == par_2 == par_3 or par_3 == par_2 or par_3 == par_1 or par_1 == par_2:
-            return self.plosca
-        if ugib1 == ugib2 == ugib3:
-            self.skrita[par_1[0]][par_1[1]] = ugib1
-            self.skrita[par_2[0]][par_2[1]] = ugib2
-            self.skrita[par_3[0]][par_2[1]] = ugib3
-        return self.skrita    
-         
-
-
-      
-
-
+     
 
     def zmaga(self):
         if self.skrita == self.plosca:
@@ -94,40 +114,51 @@ class Igra:
         return False
 
 
-   
+def nova_igra():
+    if TEZAVNOST_LAHKO:
+        return nova_igra_lahko()
+    elif TEZAVNOST_SREDNJE:
+        return nova_igra_srednje()
+    elif TEZAVNOST_TEZKO:
+        return nova_igra_tezko()
+    else:
+        print('izberi veljavno tezavnost (1, 2 ali 3)')
 
 
 def nova_igra_lahko():
     karte = SEZNAM_KART1[:(VRSTICE * STOLPCI1 // 2)] * 2
     random.shuffle(karte)
+    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
     plosca = [karte[:4],
              karte[4:8],
              karte[8:12],
              karte[12:16]]
     skrita = [list('?' * STOLPCI1) for i in range(VRSTICE)] #na zacetku igre potrebujemo prazno ploso
-    return Igra(plosca, skrita)
+    return Igra(plosca, skrita, tezavnost)
 
 
-def nova_igra():
+def nova_igra_srednje():
     karte = SEZNAM_KART2[:(VRSTICE * STOLPCI2 // 2)] * 2
     random.shuffle(karte)
+    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
     plosca = [karte[:6],
              karte[6:12],
              karte[12:18],
              karte[18:24]]
     skrita = [list('?' * STOLPCI2) for i in range(VRSTICE)] #na zacetku igre potrebujemo prazno ploso
-    return Igra(plosca, skrita)
+    return Igra(plosca, skrita, tezavnost)
 
  
 def nova_igra_tezko():
     karte = SEZNAM_KART2[:(VRSTICE * STOLPCI2 // 3)] * 3
     random.shuffle(karte)
+    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
     plosca = [karte[:6],
              karte[6:12],
              karte[12:18],
              karte[18:24]]
     skrita = [list('?' * STOLPCI2) for i in range(VRSTICE)] #na zacetku igre potrebujemo prazno ploso
-    return Igra(plosca, skrita)
+    return Igra(plosca, skrita, tezavnost)
 
 class Spomin:
 
