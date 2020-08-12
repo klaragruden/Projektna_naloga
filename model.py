@@ -115,11 +115,12 @@ class Igra:
 
 
 def nova_igra():
-    if TEZAVNOST_LAHKO:
+    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
+    if tezavnost == TEZAVNOST_LAHKO:
         return nova_igra_lahko()
-    elif TEZAVNOST_SREDNJE:
+    elif tezavnost == TEZAVNOST_SREDNJE:
         return nova_igra_srednje()
-    elif TEZAVNOST_TEZKO:
+    elif tezavnost == TEZAVNOST_TEZKO:
         return nova_igra_tezko()
     else:
         print('izberi veljavno tezavnost (1, 2 ali 3)')
@@ -128,7 +129,7 @@ def nova_igra():
 def nova_igra_lahko():
     karte = SEZNAM_KART1[:(VRSTICE * STOLPCI1 // 2)] * 2
     random.shuffle(karte)
-    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
+    tezavnost = TEZAVNOST_LAHKO
     plosca = [karte[:4],
              karte[4:8],
              karte[8:12],
@@ -140,7 +141,7 @@ def nova_igra_lahko():
 def nova_igra_srednje():
     karte = SEZNAM_KART2[:(VRSTICE * STOLPCI2 // 2)] * 2
     random.shuffle(karte)
-    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
+    tezavnost = TEZAVNOST_SREDNJE
     plosca = [karte[:6],
              karte[6:12],
              karte[12:18],
@@ -152,13 +153,14 @@ def nova_igra_srednje():
 def nova_igra_tezko():
     karte = SEZNAM_KART2[:(VRSTICE * STOLPCI2 // 3)] * 3
     random.shuffle(karte)
-    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
+    tezavnost = TEZAVNOST_TEZKO
     plosca = [karte[:6],
              karte[6:12],
              karte[12:18],
              karte[18:24]]
     skrita = [list('?' * STOLPCI2) for i in range(VRSTICE)] #na zacetku igre potrebujemo prazno ploso
     return Igra(plosca, skrita, tezavnost)
+
 
 class Spomin:
 
