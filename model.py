@@ -1,6 +1,5 @@
 import random
- 
-
+import json
 
 VRSTICE = 4
 STOLPCI1 = 4
@@ -8,7 +7,7 @@ STOLPCI2 = 6
  
 ZACETEK = 'S'
 
-ZMAGA ='W'
+#ZMAGA ='W'
 
 TEZAVNOST_LAHKO = 1
 TEZAVNOST_SREDNJE = 2
@@ -17,7 +16,7 @@ TEZAVNOST_TEZKO = 3
 SEZNAM_KART1 = ['K', 'D', 'B', '10', '9', '8', '7', 'A']
 SEZNAM_KART2 = ['K', 'D', 'B', '10', '9', '8', '7', 'A', '6', '5', '4', '3']
 
-
+DATOTEKA_STANJE = 'stanje.json'
 
 # Definirajmo logicni model igre
 class Igra: 
@@ -164,8 +163,10 @@ def nova_igra_tezko():
 
 class Spomin:
 
-    def __init__(self):
-        self.igre = {}
+    def __init__(self, datoteka_s_stanjem):
+        self.datoteka_s_stanjem = datoteka_s_stanjem
+        self.nalozi_igre_iz_datoteke()
+         
 
     def prost_id_igre(self):
         if len(self.igre) == 0:
@@ -177,12 +178,24 @@ class Spomin:
         id_igre = self.prost_id_igre()
         igra = nova_igra()
         self.igre[id_igre] = (igra, ZACETEK)
+        self.zapisi_igre_v_datoteko()
         return id_igre
 
     def ugibaj(self, id_igre, karta):
         igra, _ = self.igre[id_igre]
         stanje = igra.ugibaj(karta)
         self.igre[id_igre] = (igra, stanje)
+        self.zapisi_igre_v_datoteko()
+
+    def nalozi_igre_iz_datoteke(self): 
+        with open(self.datoteka_s_stanjem, 'r', encoding='utf-8') as f: 
+            igre = json.load(f)
+            self.igre = {int(id_igre): (Igra(plosca, skrita, tezavnost), stanje) for id_igre, (plosca, skrita, tezavnost, stanje) in igre.items()}
+
+    def zapisi_igre_v_datoteko(self): 
+        with open(self.datoteka_s_stanjem, 'w', encoding='utf-8') as f: 
+            igre = {id_igre: (igra.plosca, igra.skrita, igra.tezavnost, stanje) for id_igre, (igra, stanje) in self.igre.items()}
+            json.dump(igre, f)
 
 
 
