@@ -124,16 +124,14 @@ class Igra:
         return self.skrita[stevilka_vrstice]
 
 
-def nova_igra():
-    tezavnost = int(input(""" "Izberi tezavnost (lahko = 1, srednje = 2, tezko = 3): """))
+def nova_igra(tezavnost):
     if tezavnost == TEZAVNOST_LAHKO:
         return nova_igra_lahko()
     elif tezavnost == TEZAVNOST_SREDNJE:
         return nova_igra_srednje()
     elif tezavnost == TEZAVNOST_TEZKO:
         return nova_igra_tezko()
-    else:
-        print('izberi veljavno tezavnost (1, 2 ali 3)')
+
 
 
 def nova_igra_lahko():
@@ -171,12 +169,12 @@ def nova_igra_tezko():
     skrita = [list('?' * STOLPCI2) for i in range(VRSTICE)] #na zacetku igre potrebujemo prazno ploso
     return Igra(plosca, skrita, tezavnost)
 
-
 class Spomin:
 
-    def __init__(self, datoteka_s_stanjem):
+    def __init__(self, datoteka_s_stanjem, nova_tezavnost=1):
         self.datoteka_s_stanjem = datoteka_s_stanjem
         self.nalozi_igre_iz_datoteke()
+        self.tezavnost = nova_tezavnost
          
 
     def prost_id_igre(self):
@@ -185,12 +183,15 @@ class Spomin:
         else:
             return max(self.igre.keys()) + 1
 
-    def nova_igra(self):
+    def nova_igra(self, tezavnost):
+        self.tezavnost = tezavnost
         id_igre = self.prost_id_igre()
-        igra = nova_igra()
+        igra = nova_igra(self.tezavnost)
         self.igre[id_igre] = (igra, ZACETEK)
         self.zapisi_igre_v_datoteko()
         return id_igre
+
+
 
     def ugibaj(self, id_igre, karta):
         igra, _ = self.igre[id_igre]

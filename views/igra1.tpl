@@ -20,24 +20,32 @@
     <td class="tg-ec4q">{{igra.narisi_vrstico(0)[1]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(0)[2]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(0)[3]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[4]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[5]}}</td>
   </tr>
   <tr>
     <td class="tg-ec4q">{{igra.narisi_vrstico(1)[0]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(1)[1]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(1)[2]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(1)[3]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[4]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[5]}}</td>
   </tr>
   <tr>
     <td class="tg-ec4q">{{igra.narisi_vrstico(2)[0]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(2)[1]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(2)[2]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(2)[3]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[4]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[5]}}</td>
   </tr>
   <tr>
     <td class="tg-ec4q">{{igra.narisi_vrstico(3)[0]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(3)[1]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(3)[2]}}</td>
     <td class="tg-ec4q">{{igra.narisi_vrstico(3)[3]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[4]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[5]}}</td>
   </tr>
 </tbody>
 </table>
@@ -50,6 +58,3 @@
 </tr>
 
 </table>
-
-
- 
