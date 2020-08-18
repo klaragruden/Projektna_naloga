@@ -3,6 +3,8 @@
 
 
 
+ 
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -16,40 +18,39 @@
 <table class="tg">
 <tbody>
   <tr>
-    <td class="tg-ec4q"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[0]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[1]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[2]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(0)[3]}}</td>
   </tr>
   <tr>
-    <td class="tg-baqh"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[0]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[1]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[2]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(1)[3]}}</td>
   </tr>
   <tr>
-    <td class="tg-baqh"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[0]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[1]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[2]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(2)[3]}}</td>
   </tr>
   <tr>
-    <td class="tg-baqh"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
-    <td class="tg-0lax"></td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[0]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[1]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[2]}}</td>
+    <td class="tg-ec4q">{{igra.narisi_vrstico(3)[3]}}</td>
   </tr>
 </tbody>
 </table>
 
 <tr>
   <form action="/igra/" method="post">
-    Izberi karte : <input type="numbers" name="izbera" >
+    Izberi karte : <input type="numbers" name="izbira" >
     <button type="submit">Ugibaj</button>
   </form>
 </tr>
 
 </table>
-
 
  

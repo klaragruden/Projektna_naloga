@@ -27,6 +27,7 @@ class Igra:
         self.tezavnost = tezavnost
    
 
+
     def pokazi(self):
         # pokaze nas trenutni rezultat
         if self.tezavnost == TEZAVNOST_LAHKO:
@@ -55,6 +56,8 @@ class Igra:
             print(niz)
         else:
             print('vnesite veljavno tezavnost (1, 2 ali 3) ')
+
+
 
    
 
@@ -98,19 +101,27 @@ class Igra:
             ugib2 = self.plosca[par_2[0]][par_2[1]]
             if par_1 == par_2:
                 return self.plosca
+            #if ugib1 != ugib2:
+            #    self.plosca[par_1[0]][par_1[1]] = ugib1
+            #    self.plosca[par_2[0]][par_2[1]] = ugib2
+                
             if ugib1 == ugib2:
                 self.skrita[par_1[0]][par_1[1]] = ugib1
                 self.skrita[par_2[0]][par_2[1]] = ugib2
             return self.skrita
+            
         else:
             print('vneseni veljavno tezavnost (1, 2 ali 2)')
-    
-     
+ 
+
 
     def zmaga(self):
         if self.skrita == self.plosca:
             return True
         return False
+
+    def narisi_vrstico(self, stevilka_vrstice):
+        return self.skrita[stevilka_vrstice]
 
 
 def nova_igra():
