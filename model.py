@@ -7,7 +7,7 @@ STOLPCI2 = 6
  
 ZACETEK = 'S'
 
-#ZMAGA ='W'
+ZMAGA ='W'
 
 TEZAVNOST_LAHKO = 1
 TEZAVNOST_SREDNJE = 2
@@ -101,24 +101,26 @@ class Igra:
             ugib2 = self.plosca[par_2[0]][par_2[1]]
             if par_1 == par_2:
                 return self.plosca
-            #if ugib1 != ugib2:
-            #    self.plosca[par_1[0]][par_1[1]] = ugib1
-            #    self.plosca[par_2[0]][par_2[1]] = ugib2
-                
             if ugib1 == ugib2:
                 self.skrita[par_1[0]][par_1[1]] = ugib1
                 self.skrita[par_2[0]][par_2[1]] = ugib2
-            return self.skrita
+                return self.skrita
             
         else:
             print('vneseni veljavno tezavnost (1, 2 ali 2)')
  
 
-
     def zmaga(self):
         if self.skrita == self.plosca:
             return True
         return False
+
+    #def igranje(self, izbira):
+    #    if self.zmaga():
+    #        return ZMAGA
+
+    def narisi_vrstico_zacetek(self, stevilka_vrstice):
+        return self.plosca[stevilka_vrstice]
 
     def narisi_vrstico(self, stevilka_vrstice):
         return self.skrita[stevilka_vrstice]

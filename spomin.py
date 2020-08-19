@@ -1,6 +1,5 @@
 import bottle
 import model
-import ast
 from bottle import request
 	
 SKRIVNOST = 'moja skrivnost'
@@ -8,7 +7,7 @@ PISKOTEK = 'idigre'
  
 
 spomin = model.Spomin(model.DATOTEKA_STANJE)
-#trenutne_igre = []
+ 
 
 @bottle.get('/')
 def index():
@@ -18,11 +17,30 @@ def index():
 @bottle.post('/nova_igra/')
 def nova_igra():
     tezavnost = int(bottle.request.forms['tezavnost'])
-    #spomin = model.Spomin(model.DATOTEKA_STANJE)
     id_igre = spomin.nova_igra(tezavnost)
     bottle.response.set_cookie(PISKOTEK, str(id_igre), path='/', secret=SKRIVNOST)
-    bottle.redirect('/igra/?tezavnost=' + str(tezavnost) + '&id_igre=' + str(id_igre) + '&kliknjena=')
-    
+    #bottle.redirect('/igra/?tezavnost=' + str(tezavnost) + '&id_igre=' + str(id_igre) + '&kliknjena=')
+    bottle.redirect('/plosca/')
+
+@bottle.get('/plosca/')
+def pokazi_plosco():
+    id_igre = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
+    igra, stanje = spomin.igre[id_igre]
+    if spomin.tezavnost == 1:
+        tpl = "views/igra_zacetek.tpl"
+    if spomin.tezavnost == 2:
+        tpl = "views/igra1_zacetek.tpl"
+    if spomin.tezavnost == 3:
+        tpl = "views/igra1_zacetek.tpl"
+    return bottle.template(tpl, igra=igra, stanje=stanje)
+
+@bottle.post('/pricni_igro/')
+def nova_igra():
+    tezavnost = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
+    id_igre = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
+    bottle.response.set_cookie(PISKOTEK, str(id_igre), path='/', secret=SKRIVNOST)
+    bottle.redirect('/igra/')
+    #bottle.redirect('/igra/?tezavnost=' + str(tezavnost) + '&id_igre=' + str(id_igre) + '&kliknjena=')
 
 @bottle.get("/igra/")
 def pokazi_igro():
