@@ -1,6 +1,6 @@
 import bottle
 import model
-from bottle import request
+#from bottle import request
 	
 SKRIVNOST = 'moja skrivnost'
 PISKOTEK = 'idigre'
@@ -40,18 +40,18 @@ def nova_igra():
     id_igre = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
     bottle.response.set_cookie(PISKOTEK, str(id_igre), path='/', secret=SKRIVNOST)
     bottle.redirect('/igra/')
-    #bottle.redirect('/igra/?tezavnost=' + str(tezavnost) + '&id_igre=' + str(id_igre) + '&kliknjena=')
+     
 
 @bottle.get("/igra/")
 def pokazi_igro():
     id_igre = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
     igra, stanje = spomin.igre[id_igre]
     if spomin.tezavnost == 1:
-        tpl = "views/igra.tpl"
+        tpl = "views/igra1.tpl"
     if spomin.tezavnost == 2:
-        tpl = "views/igra1.tpl"
+        tpl = "views/igra2.tpl"
     if spomin.tezavnost == 3:
-        tpl = "views/igra1.tpl"
+        tpl = "views/igra3.tpl"
     return bottle.template(tpl, igra=igra, stanje=stanje)
 
 
@@ -59,7 +59,19 @@ def pokazi_igro():
 @bottle.post('/igra/')
 def ugibaj(): 
     id_igre = int(bottle.request.get_cookie(PISKOTEK, secret=SKRIVNOST))
-    izbira = bottle.request.forms.getunicode('izbira')
+    if spomin.tezavnost == 1:
+        izbira1 = bottle.request.forms.getunicode('izbira1')
+        izbira2 = bottle.request.forms.getunicode('izbira2')
+        izbira = izbira1 + izbira2
+    if spomin.tezavnost == 2:
+        izbira1 = bottle.request.forms.getunicode('izbira1')
+        izbira2 = bottle.request.forms.getunicode('izbira2')
+        izbira = izbira1 + izbira2
+    if spomin.tezavnost == 3:
+        izbira1 = bottle.request.forms.getunicode('izbira1')
+        izbira2 = bottle.request.forms.getunicode('izbira2') 
+        izbira3 = bottle.request.forms.getunicode('izbira3')
+        izbira = izbira1 + izbira2 + izbira3
     spomin.ugibaj(id_igre, izbira)
     bottle.redirect('/igra/')
 

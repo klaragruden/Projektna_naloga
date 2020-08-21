@@ -4,7 +4,11 @@ import model
 def izpis_zmage(igra):
     return "ZMAGAL SI!"
 
-
+#def izpis_plosce(igra):
+#    presledek = "-----------------------------------"
+#    print('SPOMIN')
+#    igra.pokazi_plosco()
+#    print(presledek)
 
 def izpis_igre(igra):
     presledek = "-----------------------------------"
@@ -15,27 +19,30 @@ def izpis_igre(igra):
 
 
 def zahtevaj_vnos():
-    return input('izberi polja')
+    p1 = input('1.karta:')
+    p2 = input('2.karta:')
+    izbira = p1 + p2
+    return izbira
+
+def zahtevaj_vnos2():
+    return input('2.karta')
      
-
+def pricni_igro():
+    return input('klikni enter')
     
-    
-         
-
 
 def pozeni_vmesnik():
-    # nova igra
     trenutna_igra = model.nova_igra()
+    #izpis_plosce(trenutna_igra)
+    #zacetek = pricni_igro()
 
     while True:
-        #pokazemo stanje
          
         izpis_igre(trenutna_igra)
 
         izbira = zahtevaj_vnos()
  
-
-        rezultat = trenutna_igra.ugibaj(izbira)
+        stanje = trenutna_igra.ugibaj(izbira)
 
         izpis_igre(trenutna_igra)
 
