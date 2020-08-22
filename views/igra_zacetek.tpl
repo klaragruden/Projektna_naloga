@@ -1,7 +1,9 @@
 %rebase('base.tpl')
 %import model
 
-
+<h1 style='text-align: center;
+  text-transform: uppercase;
+  color: #800000;Vfont-size:60px;' ><b>SPOMIN</b></h1>
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
@@ -44,7 +46,7 @@
 
 <tr>
   <form action="/pricni_igro/" method="post">
-    <p><input type="submit" value="zacni z ugibanjem" ></p>
+    <p><input type="submit" value="začni z ugibanjem" ></p>
   </form>
 </tr>
 
