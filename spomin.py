@@ -18,7 +18,6 @@ def nova_igra():
     tezavnost = int(bottle.request.forms['tezavnost'])
     id_igre = spomin.nova_igra(tezavnost)
     bottle.response.set_cookie(PISKOTEK, str(id_igre), path='/', secret=SKRIVNOST)
-    #bottle.redirect('/igra/?tezavnost=' + str(tezavnost) + '&id_igre=' + str(id_igre) + '&kliknjena=')
     bottle.redirect('/plosca/')
 
 @bottle.get('/plosca/')
