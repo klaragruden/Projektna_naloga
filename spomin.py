@@ -1,6 +1,5 @@
 import bottle
 import model
-#from bottle import request
 	
 SKRIVNOST = 'moja skrivnost'
 PISKOTEK = 'idigre'

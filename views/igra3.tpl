@@ -15,6 +15,19 @@
       <p>Izberi 3.karto : <input type="numbers" name="izbira3" ></p>
       <button type="submit">Ugibaj</button></tr>
     </form>
+
+    <h3>Če želite pričeti novo igro ponovno izberite težavnost:</h3>
+    
+    <tr>
+        <td>
+            <form action="/nova_igra/" method="POST">
+                <input type="radio" name="tezavnost" value="1"> Lahko<br>
+                <input type="radio" name="tezavnost" value="2"> Srednje<br>
+                <input type="radio" name="tezavnost" value="3"> Tezko<br>  
+                <p><input type="submit" value="prični novo igro"></p>
+            </form>
+        </td>
+    </tr>
   </div> 
 
   <div class="column right" style="background-color:#ffffff;">
@@ -82,28 +95,3 @@
 </div> 
 </div>
  
-
-
-% if stanje == model.ZMAGA:
-<p><h1 style="font-size:50px;">Čestitke!</h1></p>
-<p><h1 style="font-size:50px;">Zmagal/a si!</h1></p>
-
-
-<table>
-    <tr>
-        <td><b>Če želiš igrati še enkrat, ponovno izberi težavnost!</b></td>
-    </tr>
-    
-    <tr>
-        <td>
-            <form action="/nova_igra/" method="POST">
-                <input type="radio" name="tezavnost" value="2"> Lahko<br>
-                <input type="radio" name="tezavnost" value="3"> Srednje<br>
-                <input type="radio" name="tezavnost" value="3"> Tezko<br>  
-                <p><input type="submit" value="prični igro"></p>
-            </form>
-        </td>
-    </tr>
-    
-</table>
-% end 

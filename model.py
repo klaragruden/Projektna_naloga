@@ -7,7 +7,7 @@ STOLPCI2 = 6
  
 ZACETEK = 'S'
 
-ZMAGA ='W'
+#ZMAGA ='W'
 
 TEZAVNOST_LAHKO = 1
 TEZAVNOST_SREDNJE = 2
@@ -114,10 +114,7 @@ class Igra:
         if self.skrita == self.plosca:
             return True
         return False
-
-    #def igranje(self, izbira):
-    #    if self.zmaga():
-    #        return ZMAGA
+ 
 
     def narisi_vrstico_zacetek(self, stevilka_vrstice):
         return self.plosca[stevilka_vrstice]
